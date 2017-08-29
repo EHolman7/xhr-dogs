@@ -2,13 +2,13 @@ console.log("linked to main.js");
 var dogs = [];
 var breeds = [];
 
-function runDogs(){	
-	var data = JSON.parse(this.responseText);
+function runAfterDogsLoads(){	
+	var data = JSON.parse(this.responseText).dogs;
 	console.log("dogs", data);
 }
 
-function runBreeds(){
-	var data = JSON.parse(this.responseText);
+function runAfterBreedsLoads(){
+	var data = JSON.parse(this.responseText).breeds;
 	console.log("breeds", data);
 }
 
@@ -17,13 +17,13 @@ function itBroke(){
 }
 
 var myDogs = new XMLHttpRequest();
-myDogs.addEventListener('load', runDogs);
+myDogs.addEventListener('load', runAfterDogsLoads);
 myDogs.addEventListener('error', itBroke);
 myDogs.open('GET', 'dogs.json');
 myDogs.send();
 
 var myBreeds = new XMLHttpRequest();
-myBreeds.addEventListener('load', runBreeds);
+myBreeds.addEventListener('load', runAfterBreedsLoads);
 myBreeds.addEventListener('error', itBroke);
 myBreeds.open('GET', 'breeds.json');
 myBreeds.send();
